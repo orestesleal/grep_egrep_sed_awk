@@ -42,6 +42,6 @@ SED=`which sed`
 #
 REGEX="^ *([a-fA-F0-9]{2}[-\.:]){5}[a-fA-F0-9]"
 
- if [ "$#" -eq 1 ]; then
-   ${EGREP} "${REGEX}" $1 | ${SED} 's/^ *//'
- fi
+# run the filter
+#
+${EGREP} "${REGEX}" $1 | ${SED} 's/^ *//'
