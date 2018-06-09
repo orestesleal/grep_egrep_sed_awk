@@ -26,7 +26,7 @@ req="sed egrep"
 
 for f in $req; do
 
-   test=`which $f &>/dev/null`   # do the test to get the return value
+  `which $f &>/dev/null`   # do the test to get the return value
 
    if [ "$?" = 1 ]; then 
       echo "$f was not found, install $f first"
