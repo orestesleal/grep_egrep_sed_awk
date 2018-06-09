@@ -20,12 +20,10 @@ REGEX="^ *([a-fA-F0-9]{2}[-\.:]){5}[a-fA-F0-9]"
     exit 1
  fi
 
-# find egrep first. don't assume is already in place
-egrep=`which egrep &>/dev/null`
-
 # requirement list for software that should be available
 # this list can be extended to include more utilities
-# that are required by this script
+# that are required by this script, don't assume they are
+# already in place
 req="sed egrep"
 
 for f in $req; do
