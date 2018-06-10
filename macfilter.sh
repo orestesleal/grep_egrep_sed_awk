@@ -6,7 +6,7 @@
 # separate the regex using on this script for easy
 # modifcation of it 
 #
-REGEX="^ *([a-fA-F0-9]{2}[-\.:]){5}[a-fA-F0-9]"
+REGEX="^ *([a-fA-F0-9]{2}[-\.:]){5}[a-fA-F0-9]{2} *$"
 
 # check the argument before anything else
  if [ "$#" -lt 1 ]; then
