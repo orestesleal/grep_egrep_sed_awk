@@ -1,11 +1,19 @@
 #!/bin/sh
-
+#
 # Description: Extract Ethernet Mac Addresses from an input file
 #              and look for the vendor in the OUI db. The DB will
 #              be downloaded in case it doesn't exist.
-
+#
 # Orestes Leal Rodriguez, 2018.
-
+#
+# NOTE: there are a few pipe(2)s used here. I would like to
+#       improve this code by using only 'awk' to avoid the pipe I/O
+#       and the invoking the bourne shell loop, etc.
+#
+# NOTE2: This code would NOT work on the default 'awk' of freebsd
+#        since it doesn't support bounds (\{N\})
+#
+# Start.
 # do some housekeeping, test for the OUI db, download it
 # if not found, check if wget is installed
 
