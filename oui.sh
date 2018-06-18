@@ -6,11 +6,8 @@
 
 # Orestes Leal Rodriguez, 2018.
 
-
 # do some housekeeping, test for the OUI db, download it
 # if not found, check if wget is installed
-# TODO: fallback to curl in case wget is not found
-
 
 OUIDB=http://standards-oui.ieee.org/oui.txt 
 
@@ -22,7 +19,7 @@ if [ ! -f "oui.txt" ]; then
   if [ "$?" -eq "0" ]; then
      wget "$OUIDB" 2>/dev/null
   else 
-     # fall back to curl, try to find it...
+     # fall back to curl, try to find it... # TODO: walk the PATH env variable
      which curl 1>/dev/null
      if [ "$?" -eq "0" ]; then    
          curl $OUIDB
@@ -47,6 +44,8 @@ sed 's/[:\.]/-/g' | \
 
 for mac in $(awk -F"-" '{ print $1"-"$2"-"$3 }')
   do
-     awk /$mac/ oui.txt | awk '{ print $1 " -> " $3}'    # TODO: improve it without the pipe
-  done
+     awk /$mac/ oui.txt | awk '{ print $3 " -> " $1}'    # TODO: improve it without the pipe
+
+  done  | sort   #  sort by Vendor. this sort makes the script looks slower but the origin
+                 #  end of the pipeline is just buffering to pass the data to sort
 
