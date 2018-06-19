@@ -21,9 +21,7 @@ OUIDB=http://standards-oui.ieee.org/oui.txt
 
 if [ ! -f "oui.txt" ]; then
   echo "### warning: the OUI db is not here, downloading now..."
-  
   which wget 1>/dev/null
-
   if [ "$?" -eq "0" ]; then
      wget "$OUIDB" 2>/dev/null
   else 
@@ -35,20 +33,11 @@ if [ ! -f "oui.txt" ]; then
          echo "### Error: neither CURL or WGET were found, install one of them"
          exit 1
      fi
-  fi
+   fi
 fi
 
-
-# Speed Hack. parse oui.txt extracting only the 'hex' entries
-# in my case this provides at least a 2x improvement in speed
-# as measured by time(1)
+# Speed Hack. 
 awk '/^([[:alnum:]]{2})-/' oui.txt > /tmp/oui2.txt
-
-
-# use one RE to match Ethernet MAC addresses, convert them
-# to uppercase, repl with sed any address that used a format
-# that is not XX-XX-... and process the entries for matching
-
 awk '{ 
        if ($1 ~ /^ *([[:xdigit:]]{2}[-:.]){5}[[:xdigit:]]{2} *$/) 
            print toupper($1)
@@ -56,8 +45,6 @@ awk '{
  |
 sed 's/[:\.]/-/g' | \
 
-for mac in $(awk -F"-" '{ print $1"-"$2"-"$3 }')
-  do
+for mac in $(awk -F"-" '{ print $1"-"$2"-"$3 }') do
      awk /$mac/ /tmp/oui2.txt | awk '{ print $3 " -> " $1}'    # TODO: improve it without the pipe
-
   done  | sort   #  sort by Vendor.
