@@ -39,6 +39,12 @@ if [ ! -f "oui.txt" ]; then
 fi
 
 
+# Speed Hack. parse oui.txt extracting only the 'hex' entries
+# in my case this provides at least a 2x improvement in speed
+# as measured by time(1)
+awk '/^([A-F0-9]{2})-/' oui.txt > /tmp/oui2.txt
+
+
 # use one RE to match Ethernet MAC addresses, conver them
 # to uppercase, repl with sed any address that used a format
 # that is not XX-XX-... and process the entries for matching
@@ -52,7 +58,7 @@ sed 's/[:\.]/-/g' | \
 
 for mac in $(awk -F"-" '{ print $1"-"$2"-"$3 }')
   do
-     awk /$mac/ oui.txt | awk '{ print $3 " -> " $1}'    # TODO: improve it without the pipe
+     awk /$mac/ /tmp/oui2.txt | awk '{ print $3 " -> " $1}'    # TODO: improve it without the pipe
 
   done  | sort   #  sort by Vendor. this sort makes the script looks slower but the origin
                  #  end of the pipeline is just buffering to pass the data to sort
