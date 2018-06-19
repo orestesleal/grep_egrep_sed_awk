@@ -3,8 +3,8 @@
 # Description: Extract Ethernet Mac Addresses from an input file
 #              and look for the vendor in the OUI db. The DB will
 #              be downloaded in case it doesn't exist.
-#
 # Orestes Leal Rodriguez, 2018.
+# TODOs: 1. walk the PATH env variable to find 'curl' & 'wget'
 
 OUIDB=http://standards-oui.ieee.org/oui.txt 
 
@@ -14,7 +14,7 @@ if [ ! -f "oui.txt" ]; then
   if [ "$?" -eq "0" ]; then
      wget "$OUIDB" 2>/dev/null
   else 
-     # fall back to curl, try to find it... # TODO: walk the PATH env variable
+     # fall back to curl, try to find it... 
      which curl 1>/dev/null
      if [ "$?" -eq "0" ]; then    
          curl $OUIDB
@@ -34,5 +34,5 @@ awk '{
 sed 's/[:\.]/-/g' | \
 
 for mac in $(awk -F"-" '{ print $1"-"$2"-"$3 }') do
-     awk /$mac/ /tmp/oui2.txt | awk '{ print $3 " -> " $1}'    # TODO: improve it without the pipe
+     awk /$mac/ /tmp/oui2.txt | awk '{ print $3 " -> " $1}'
   done  | sort   #  sort by Vendor.
