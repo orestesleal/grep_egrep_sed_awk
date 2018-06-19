@@ -42,7 +42,7 @@ fi
 # Speed Hack. parse oui.txt extracting only the 'hex' entries
 # in my case this provides at least a 2x improvement in speed
 # as measured by time(1)
-awk '/^([A-F0-9]{2})-/' oui.txt > /tmp/oui2.txt
+awk '/^([[:alnum:]]{2})-/' oui.txt > /tmp/oui2.txt
 
 
 # use one RE to match Ethernet MAC addresses, convert them
@@ -50,7 +50,7 @@ awk '/^([A-F0-9]{2})-/' oui.txt > /tmp/oui2.txt
 # that is not XX-XX-... and process the entries for matching
 
 awk '{ 
-       if ($1 ~ /^ *([a-fA-F0-9]{2}[-:.]){5}[0-9A-Fa-f]{2} *$/) 
+       if ($1 ~ /^ *([[:xdigit:]]{2}[-:.]){5}[[:xdigit:]]{2} *$/) 
            print toupper($1)
      }' $1 \
  |
