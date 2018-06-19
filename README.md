@@ -7,8 +7,6 @@ supported. The "mac" file can be used as an input"
 AA:BB:CC:DD:EE:FF will match but also AA.BB.CC.DD.EE.FF and AA-BB-CC-DD-EE-FF
 
 =oui.sh=
-# Description: Extract Ethernet Mac Addresses from an input file
-#              and look for the vendor in the OUI db. The DB will
-#              be downloaded in case it doesn't exist.
-
+Parse ethernet mac addresses from the file passed as input in the first argument
+and then use the oui.txt Vendor DB for getting the vendor for each MAC address.
 
