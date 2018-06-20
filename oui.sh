@@ -33,6 +33,6 @@ awk '{
  |
 sed 's/[:\.]/-/g' | \
 
-for mac in $(awk -F"-" '{ print $1"-"$2"-"$3 }') do
+for mac in $(awk -F"-" '{ print $1"-"$2"-"$3 }'); do
      awk /$mac/ /tmp/oui2.txt | awk '{ print $3 " -> " $1}'
   done  | sort   #  sort by Vendor.
