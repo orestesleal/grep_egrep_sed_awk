@@ -6,28 +6,28 @@
 # Orestes Leal Rodriguez, 2018.
 # TODOs: 1. walk the PATH env variable to find 'curl' & 'wget'
 
-OUIDB=http://standards-oui.ieee.org/oui.txt 
+OUIDB=http://standards-oui.ieee.org/oui.txt
 
 if [ ! -f "oui.txt" ]; then
   echo "### warning: the OUI db is not here, downloading now..."
   which wget 1>/dev/null
   if [ "$?" -eq "0" ]; then
      wget "$OUIDB" 2>/dev/null
-  else 
-     # fall back to curl, try to find it... 
+  else
+     # fall back to curl, try to find it...
      which curl 1>/dev/null
-     if [ "$?" -eq "0" ]; then    
+     if [ "$?" -eq "0" ]; then
          curl $OUIDB
-     else 
+     else
          echo "### Error: neither CURL or WGET were found, install one of them"
          exit 1
      fi
   fi
 fi
-# Speed Hack. 
+# Speed Hack. I get a 2x improvement in speed filtering the interesting fields
 awk 'gsub(/ *\(hex\).\t/, " ")' oui.txt > /tmp/oui2.txt
-awk '{ 
-       if ($1 ~ /^ *([[:xdigit:]]{2}[-:.]){5}[[:xdigit:]]{2} *$/) 
+awk '{
+       if ($1 ~ /^ *([[:xdigit:]]{2}[-:.]){5}[[:xdigit:]]{2} *$/)
            print toupper($1)
      }' $1 \
  |
