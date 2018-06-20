@@ -25,7 +25,7 @@ if [ ! -f "oui.txt" ]; then
   fi
 fi
 # Speed Hack. 
-awk '/^([[:alnum:]]{2})-/' oui.txt > /tmp/oui2.txt
+awk 'gsub(" *\\(hex\\).\t", " ")' oui.txt | awk '/^([[:alnum:]]{2})-/' > /tmp/oui2.txt
 awk '{ 
        if ($1 ~ /^ *([[:xdigit:]]{2}[-:.]){5}[[:xdigit:]]{2} *$/) 
            print toupper($1)
@@ -34,5 +34,5 @@ awk '{
 sed 's/[:\.]/-/g' | \
 
 for mac in $(awk -F"-" '{ print $1"-"$2"-"$3 }'); do
-     awk /$mac/ /tmp/oui2.txt | awk '{ print $3 " -> " $1}'
-  done  | sort   #  sort by Vendor.
+    awk /$mac/ /tmp/oui2.txt
+  done  | sort   # sort by Vendor.
