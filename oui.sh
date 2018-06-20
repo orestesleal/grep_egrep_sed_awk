@@ -25,7 +25,7 @@ if [ ! -f "oui.txt" ]; then
   fi
 fi
 # Speed Hack. 
-awk 'gsub(" *\\(hex\\).\t", " ")' oui.txt | awk '/^([[:alnum:]]{2})-/' > /tmp/oui2.txt
+awk 'gsub(" *\\(hex\\).\t", " ")' oui.txt > /tmp/oui2.txt
 awk '{ 
        if ($1 ~ /^ *([[:xdigit:]]{2}[-:.]){5}[[:xdigit:]]{2} *$/) 
            print toupper($1)
