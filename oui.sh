@@ -27,7 +27,7 @@ fi
 # Speed Hack. I get a 2x improvement in speed filtering the interesting fields
 awk 'gsub(/ *\(hex\).\t/, " ")' oui.txt > /tmp/oui2.txt
 awk '{
-       if ($1 ~ /^ *([[:xdigit:]]{2}[-:.]){5}[[:xdigit:]]{2} *$/)
+       if ($1 ~ /^ *([[:xdigit:]]{2}[-:.]){5}[[:xdigit:]]{1,2} *$/)
            print toupper($1)
      }' $1 \
  |
