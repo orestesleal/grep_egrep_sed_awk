@@ -1,11 +1,12 @@
- - scripting and text processing using sed, grep & awk -
+- Scripting and text processing using sed, grep & awk ~
 
 - macfilter.sh
   contains an example using egrep to extrac the Ethernet MAC addresses
   from a text file, also used sed to round up the result. Several formats are
   supported. The "mac" file can be used as an input"
 
-AA:BB:CC:DD:EE:FF will match but also AA.BB.CC.DD.EE.FF and AA-BB-CC-DD-EE-FF
+     AA:BB:CC:DD:EE:FF will match 
+     AA.BB.CC.DD.EE.FF and AA-BB-CC-DD-EE-FF will also match too
 
 - oui.sh
   Parse Ethernet mac addresses from the file passed as input in the first argument
