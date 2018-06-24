@@ -1,0 +1,20 @@
+[=]
+.hd1 Chapter 1: Unix on today Machines
+[=]
+
+.hd2 1.0 Selecting the right unix machine
+
+.text
+ Selecting a Unix machine is not a trivial task for the unnitiated. Several 
+ steps must be followed to be sure the hardware is compatible with the software.
+
+ First we have to figure out if there are drivers for the disk controllers, also
+ for the display driver, sound card, etc.
+
+.\text
+
+.hd3 1.1 hardware and software requirements
+
+.text
+ Unix is amazing.
+.\text
