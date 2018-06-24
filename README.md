@@ -12,5 +12,10 @@
   Parse Ethernet mac addresses from the file passed as input in the first argument
   and then use the oui.txt Vendor DB for getting the vendor for each MAC address.
 
-- format.sh is a sed(1) formatter for a language described on doc.txt
-  the output can be seen in doc.txt.format
+- format.sh
+  a sed(1) formatter for a language described on doc.txt the output can be seen 
+  in doc.txt.format
+  
+- sortshell.sh
+  sort and organize a list of users, system users, by shell
+
