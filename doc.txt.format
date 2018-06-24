@@ -1,16 +1,47 @@
- ======================================================
- >>  Chapter 1: Unix on today Machines
- ======================================================
+─────────────────────────────────────────────────────────────────────────────────────
+1 Unix on today Machines
 
-  -> | 1.0 Selecting the right unix machine
+   Selecting the right unix machine
 
-     Selecting a Unix machine is not a trivial task for the unnitiated. Several 
-     steps must be followed to be sure the hardware is compatible with the software.
+    Selecting a Unix machine is not a trivial task for the unnitiated. Several 
+    steps must be followed to be sure the hardware is compatible with the software.
 
-     First we have to figure out if there are drivers for the disk controllers, also
-     for the display driver, sound card, etc.
+    First we have to figure out if there are drivers for the disk controllers, also
+    for the display driver, sound card, etc.
 
 
-  -> | 1.1 hardware and software requirements
+   hardware and software requirements
 
-     Unix is amazing.
+
+    Unix is amazing.
+
+─────────────────────────────────────────────────────────────────────────────────────
+2 Working with text
+
+   Escape sequences
+
+    Until this chapter, we have only encountered escapes of the form '\^',
+    which tell 'sed' not to interpret the circumflex as a special character,
+    but rather to take it literally.  For example, '\*' matches a single
+    asterisk rather than zero or more backslashes.
+
+─────────────────────────────────────────────────────────────────────────────────────
+3 Character Encoding
+
+   UTF-8 and Friends
+
+    The following example uses the Greek letter Capital Sigma (U+03A3,
+    Unicode code point '0x03A3').  In a 'UTF-8' locale, 'sed' correctly
+    processes the Sigma as one character despite it being 2 octets (bytes):
+
+       $ locale | grep LANG
+       LANG=en_US.UTF-8
+
+       $ printf 'a\u03A3b'
+       aU+03A3b
+
+       $ printf 'a\u03A3b' | sed 's/./X/g'
+       XXX
+
+       $ printf 'a\u03A3b' | od -tx1 -An
+       61 ce a3 62
