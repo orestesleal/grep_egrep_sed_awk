@@ -30,12 +30,14 @@ gawk '{
            print toupper($1)
      }' $1 \
  |
-sed 's/[:\.]/-/g' | \
-
+sed 's/[:\.]/-/g' \
+ |
 for mac in $(gawk -F"-" '{ print $1"-"$2"-"$3 }'); do
-    gawk /$mac/ /tmp/oui2.txt
-  done  | sort  | \
-
+   gawk /$mac/ /tmp/oui2.txt
+done \
+ |
+sort \
+ |
 sed '1i\
 \
 OUI   -   Vendor\
