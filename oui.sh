@@ -1,7 +1,7 @@
 #! /usr/local/bin/ksh93
 
 # Description: Extract Ethernet Mac Addresses from an input file
-#              and look for the vendor in the OUI db. 
+#              and look for the vendor in the OUI db.
 # ~ Orestes Leal Rodriguez, 2018.
 
 OUIDB=http://standards-oui.ieee.org/oui.txt
@@ -15,7 +15,7 @@ if [ ! -f "oui.txt" ]; then
      # fall back to curl, try to find it...
      which curl 1>/dev/null
      if [ "$?" -eq "0" ]; then
-         curl $OUIDB
+         curl $OUIDB -O
      else
          echo "# Error: neither CURL or WGET were found, install one of them"
          exit 1
