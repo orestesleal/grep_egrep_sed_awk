@@ -36,7 +36,7 @@ gawk '{
            print toupper($1)
      }' $1 \
  |
-sed 's/[:\.]/-/g' \
+sed 's/[:\.]/-/g; s/^ *//' \
  |
 for mac in $(gawk -F"-" '{ print $1"-"$2"-"$3 }'); do
     gawk /$mac/ oui.txt
