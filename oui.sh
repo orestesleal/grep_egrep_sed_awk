@@ -31,13 +31,13 @@ then
    fi
 fi
 
+sed '/^$/d; s/^ *//; /^[^a-fA-F0-9]/d; s/[:\.]/-/g' $1 \
+ |
 gawk '{
-       if ($1 ~ /^ *([[:xdigit:]]{2}[-:.]){5}[[:xdigit:]]{1,2} *$/)
-           print toupper($1)
-     }' $1 \
- |
-sed 's/[:\.]/-/g; s/^ *//' \
- |
+       if ($0 ~ /^ *([[:xdigit:]]{2}[-:.]){5}[[:xdigit:]]{1,2} *$/)
+           print toupper($0)
+      }' \
+ | \
 for mac in $(gawk -F"-" '{ print $1"-"$2"-"$3 }'); do
     gawk /$mac/ oui.txt
 done \
@@ -49,4 +49,3 @@ sed '1i\
    OUI   -   Vendor\
    ===       ======\
 '
-
