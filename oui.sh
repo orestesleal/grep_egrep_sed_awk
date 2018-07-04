@@ -10,7 +10,7 @@ if [ ! -f oui.txt ]; then
   echo "## manufacturers OUI db not found, downloading..."
 
   if [ "$2" = "-d" ]; then
-     make 2>/dev/null                            # build it first
+     make 2>&1 >/dev/null                       # build the http client
      ./httpoui
   else
    gawk 'BEGIN {

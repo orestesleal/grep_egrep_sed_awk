@@ -1,5 +1,9 @@
 /*
- *   alternative code in C to download the OUI db from IEEE
+ *   httpoui.c
+ *
+ *   alternative code in http client form to download the OUI db
+ *   from the IEEE server.
+ *
  *   Orestes Leal Rodriguez, 2018
  */
 #include <stdio.h>
@@ -60,6 +64,11 @@ int main() {
     XXX: fix the gathering of data and skip the http1.1 header at the top
          also filter by "hex" lines, this can be tricky since this is
          not sed(1) or awk(1) that work on one line at a time
+
+         IDEA: read the chunks into buffers, can be a linked list of buffers
+         and for each buffer test that if that line that doesn't contains the
+         "(hex)" string is removed. this si for mimic the behavior of filtering
+         done by the gawk(1) code inside the networking part in oui.sh
   */
 
   /* 
@@ -67,12 +76,8 @@ int main() {
    */
   while (1) {
     read = fread(&buf, 1, CHK_SIZ, http_stream);
-    if (read == 0) 
-      break;
-    if (read == CHK_SIZ)
-      fwrite(&buf, CHK_SIZ, 1, oui); 
-    else 
-      fwrite(&buf, read, 1, oui); 
+    if (read == 0) break;
+    fwrite(&buf, read, 1, oui); 
   }
   
   fclose(oui);
