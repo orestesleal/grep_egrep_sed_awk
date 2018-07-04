@@ -31,11 +31,16 @@ then
    fi
 fi
 
-sed '/^$/d;s/^ *//;/^[^a-fA-F0-9]/d;s/[:\.]/-/g;s/ *$//' $1 \
+sed '/^$/d; 
+    s/^ *//;
+    /^[^a-fA-F0-9]/d;
+    s/[:\.]/-/g;
+    s/ *$//;
+    y/abcdef/ABCDEF/' $1  \
  |
 gawk '{
        if ($0 ~ /^([[:xdigit:]]{2}-){5}[[:xdigit:]]{1,2}$/)
-           print toupper($0)
+           print $0
       }' \
  | \
 for mac in $(gawk -F"-" '{ print $1"-"$2"-"$3 }'); do
