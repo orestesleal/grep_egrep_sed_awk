@@ -38,10 +38,7 @@ sed '/^$/d;
     s/ *$//;
     y/abcdef/ABCDEF/' $1  \
  |
-gawk '{
-       if ($0 ~ /^([[:xdigit:]]{2}-){5}[[:xdigit:]]{1,2}$/)
-           print $0
-      }' \
+gawk '/^([[:xdigit:]]{2}-){5}[[:xdigit:]]{1,2}$/' \
  | \
 for mac in $(gawk -F"-" '{ print $1"-"$2"-"$3 }'); do
     gawk /$mac/ oui.txt
