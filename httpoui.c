@@ -75,7 +75,7 @@ int main() {
       fwrite(&buf, read, 1, oui); 
   }
   
-  close(oui);
+  fclose(oui);
   close(s); 
   freeaddrinfo(res);
   fclose(http_stream);
