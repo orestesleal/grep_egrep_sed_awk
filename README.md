@@ -11,6 +11,8 @@
 - oui.sh
   Parse Ethernet mac addresses from the file passed as input in the first argument
   and then use the oui.txt Vendor DB for getting the vendor for each MAC address.
+  clt.c is an alternative tool coded specifically to make an http 1.1 request
+  and download the OUI db oui.txt to be used for this script
 
 - format.sh
   a sed(1) formatter for a language described on doc.txt the output can be seen 
