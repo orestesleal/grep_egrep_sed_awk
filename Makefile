@@ -1,4 +1,4 @@
-clt: clt.c
-	cc -g -o clt clt.c
+clt: httpoui.c
+	cc -g -o httpoui httpoui.c
 clean:
-	rm clt
+	rm httpoui

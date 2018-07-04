@@ -5,10 +5,14 @@
 #      and find the vendor for the adapter in the OUI db.
 #   Orestes Leal Rodriguez, 2018.
 
-if [ ! -f oui.txt ];
-then
-   echo "## manufacturers OUI db not found, downloading..."
+if [ ! -f oui.txt ]; then
 
+  echo "## manufacturers OUI db not found, downloading..."
+
+  if [ "$2" = "-d" ]; then
+     make 2>/dev/null                            # build it first
+     ./httpoui
+  else
    gawk 'BEGIN {
 
       ieee_server = "/inet/tcp/0/standards-oui.ieee.org/80"
@@ -29,6 +33,7 @@ then
       echo "^^ An error has occurred while downloading the oui database, please try again"
       exit 1
    fi
+ fi
 fi
 
 sed '/^$/d; 
@@ -43,9 +48,9 @@ gawk '/^([[:xdigit:]]{2}-){5}[[:xdigit:]]{1,2}$/' \
 for mac in $(gawk -F"-" '{ print $1"-"$2"-"$3 }'); do
     gawk /$mac/ oui.txt
 done \
- |
+ | \
 sort \
- |  \
+ |
 sed '1i\
 \
    OUI   -   Vendor\
