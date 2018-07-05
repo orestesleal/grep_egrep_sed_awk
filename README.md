@@ -14,6 +14,8 @@
   'httpoui.c' is an alternative tool coded specifically to make an http 1.1 request
   and download the OUI db oui.txt, if the 2nd parameter to the script is -d it will
   use this http client to download he oui.txt file
+  NOTE: this code will not be updated, it was created on another repository at
+        https://github.com/orestesleal/ethernet_macVendor
 
 - format.sh
   a sed(1) formatter for a language described on doc.txt the output can be seen 
