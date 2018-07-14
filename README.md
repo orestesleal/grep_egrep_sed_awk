@@ -1,4 +1,4 @@
-- Scripting and text processing using sed, grep & awk ~
+# Scripting and text processing using sed, grep & awk ~
 
 - macfilter.sh
   contains an example using egrep to extrac the Ethernet MAC addresses
@@ -23,4 +23,9 @@
   
 - sortshell.sh
   sort and organize a list of users, system users, by shell
+
+- if.sh
+  calls if.sed to get received/sent traffic on all interfaces
+  in a Linux system that has the ifconfig(1) utility
+
 
