@@ -7,8 +7,6 @@
         # remove tun interfaces
         /^tun[0-9]:/,/: tun.*/d
 
-        s/inet //p
-
         # remove the hardware address line
         /hwaddr/d
 
