@@ -28,4 +28,8 @@
   calls if.sed to get received/sent traffic on all interfaces
   in a Linux system that has the ifconfig(1) utility
 
+- freebsdif.sed
+  extract network interfaces information like MTU and MACs
+  have to be called like $ ifconfig | sed -f freebsdif.sed
+
 
