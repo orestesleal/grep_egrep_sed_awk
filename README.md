@@ -34,4 +34,6 @@
 
 - ipscav.sed
   The IP scavenger, a sed script to extract IPv4 addresses from a file
-  and output them to stdout
+  and output them to stdout, the 'ips' file is an input sample. A note
+  can be added that this script will need the -E flag to use extended
+  REs, something like sed -Ef ipscav.sed ips can be used to test
