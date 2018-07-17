@@ -32,4 +32,6 @@
   extract network interfaces information like MTU and MACs
   have to be called like $ ifconfig | sed -f freebsdif.sed
 
-
+- ipscav.sed
+  The IP scavenger, a sed script to extract IPv4 addresses from a file
+  and output them to stdout
