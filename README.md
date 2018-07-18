@@ -37,3 +37,5 @@
   and output them to stdout, the 'ips' file is an input sample. A note
   can be added that this script will need the -E flag to use extended
   REs, something like sed -Ef ipscav.sed ips can be used to test
+  Update: this script is driven now by ipscav.sh which calls sed(1) 
+  and uses awk(1) to do a full check of all octets.
