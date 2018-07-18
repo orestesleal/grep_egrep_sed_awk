@@ -1,0 +1,8 @@
+Some ideas to implement about the projects in this gihub repository
+
+ipscav.sed -
+           . The only bug I have pending is the one that doesn't match more than
+             one IPv4 address per line. Mi idea is to detect IPS and insert a newline
+             after each match by using 's' command. to try to put each ip in his
+             own line to then later, do some cleanups, parse and push the results
+             through the pipe(2) to awk(1)
