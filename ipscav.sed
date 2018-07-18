@@ -8,9 +8,15 @@
 # remove everything that is not a number
 s/^[^0-9]*//
 
-# enough cleanup (probably), now filter by IP format
+# 'mark' the ip address. this will signal to later filtering
+# for being more efficient for removal, will mark something
+# like sf(kk192.168.0.1I to "sf(kk^192.168.0.1!I"
 
-s/([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}).*/\1/p
+s/([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})/\^\1!/
+
+# now completely filter by the markings to get the final result
+s/.*\^//
+s/!.*//p
 
 # BUGS (so far): 
 #	"1.1.1.1 more random text 2.2.2.2" match only the first IP.
