@@ -1,5 +1,6 @@
 #n
 # = The Mighty IPv4 Scavenger using sed(1) =
+# Orestes Leal Rodríguez, 2018 <olealrd1981@gmail.com>
 #
 # using FreeBSD's sed(1) or GNU sed(1) this  have to be called like 
 #  '$ sed -Ef ipscav.sed infile'
