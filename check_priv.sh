@@ -2,7 +2,7 @@
 # 
 #  Orestes Leal Rodriguez, 2019, <olealrd1981@gmail.com>
 #  
-#  print only rfc1898 addresses.
+#  print only rfc1918 addresses.
 #  the input file should be a list
 #  IPv4 addresses, one per line.
 #  
